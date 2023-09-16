@@ -19,13 +19,13 @@ fn get_three_arguments(stdin: Stdin) -> String {
         let _ = stdout().flush();
 
         buffer = String::new();
-        stdin.read_line(&mut buffer);
+        let _ = stdin.read_line(&mut buffer);
     }
     buffer
 }
 
 fn validate_arguments(s: &str) -> Vec<&str> {
-    let mut args: Vec<&str> = s.split_whitespace().collect();
+    let args: Vec<&str> = s.split_whitespace().collect();
     if is_parsable_to_i32(args[0])
         && is_mathematical_operator(args[1])
         && is_parsable_to_i32(args[2])

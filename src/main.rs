@@ -7,7 +7,6 @@ use std::process::exit;
 fn main() -> io::Result<()> {
     let _ = stdout().flush()?;
     let stdin = io::stdin();
-    // print!("{}", get_three_arguments(stdin));
     let _ = validate_arguments(&get_three_arguments(stdin));
     Ok(())
 }
@@ -27,7 +26,10 @@ fn get_three_arguments(stdin: Stdin) -> String {
 
 fn validate_arguments(s: &str) -> Vec<&str> {
     let mut args: Vec<&str> = s.split_whitespace().collect();
-    if is_parsable_to_i32(args[0]) && is_mathematical_operator(args[1]) && is_parsable_to_i32(args[2]) {
+    if is_parsable_to_i32(args[0])
+        && is_mathematical_operator(args[1])
+        && is_parsable_to_i32(args[2])
+    {
         print!("Valid inputs!\n");
     } else {
         print!("Please enter a mathematical expression\nExample: 8 * 3\n");
@@ -41,7 +43,6 @@ fn is_parsable_to_i32(s: &str) -> bool {
 }
 
 fn is_mathematical_operator(s: &str) -> bool {
-    //symbols.contains(s)
     let vec_of_operators: Vec<&str> = vec!["*", "/", "+", "-"];
     if vec_of_operators.contains(&s) {
         true
